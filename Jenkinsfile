@@ -6,7 +6,7 @@ pipeline {
             steps {
                 script {
                     def branchname = env.BRANCH_NAME
-                    def latestTag = sh(script: "git describe --tags --abbrev=0", returnStdout: true).trim()
+                    def Tag = sh(script: "git describe --tags --abbrev=0", returnStdout: true).trim()
 
                     echo "Creating release in ${branchname} branch..."
                     
@@ -18,11 +18,11 @@ pipeline {
             steps {
                 script {
                     def branchname = env.BRANCH_NAME
-                    def latestTag = sh(script: "git describe --tags --abbrev=0", returnStdout: true).trim()
+                    def Tag = sh(script: "git describe --tags --abbrev=0", returnStdout: true).trim()
 
                     build job: 'main', parameters: [
                         string(name: 'branch', value: branchname),
-                        string(name: 'tag', value: latestTag)
+                        string(name: 'tag', value: Tag)
                     ]
                 }
             }
