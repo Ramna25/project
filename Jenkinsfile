@@ -1,31 +1,19 @@
 pipeline {
     agent any
 
-    parameters {
-        string(name: 'branch', defaultValue: '', description: 'Branch name')
-        string(name: 'tag', defaultValue: '', description: 'Tag name')
-    }
-
     stages {
-        stage('Check Release') {
+        stage('Create Release in QA') {
             steps {
-                script {
-                    def branch = params.branch
-                    def tag = params.tag
-
-                    echo "Received branch: ${branch}"
-                    echo "Received tag: ${tag}"
-
-                    if (branch == 'QA' && tag.startsWith('qa-')) {
-                        echo "I am a release from QA."
-                    } else if (branch == 'sandbox' && tag.startsWith('sandbox-')) {
-                        echo "I am a release from sandbox."
-                    } else {
-                        echo "This is not a recognized release."
-                    }
-                }
+                // ... Steps to create the release in the QA branch
+            }
+        }
+        stage('Trigger Central Jenkinsfile') {
+            steps {
+                build job: 'Central-Jenkinsfile', parameters: [
+                    string(name: 'branch', value: 'QA'),
+                    string(name: 'tag', value: 'your-tag-name')
+                ]
             }
         }
     }
 }
-
