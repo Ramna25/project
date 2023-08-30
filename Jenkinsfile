@@ -7,7 +7,7 @@ pipeline {
             steps{
                 script{
                 def branchname = GIT_BRANCH
-                //def tag = sh "returnStdout: true, script: "git tag --sort version:refname | tail -1").trim()"
+                def tag = sh "returnStdout: true, script: "git tag --sort version:refname | tail -1").trim()"
                 def repotag = sh(returnStdout: true, script: "git tag --contains | head -1").trim()
 
                 def gitrepo = scm.getUserRemoteConfigs()[0].getUrl()
