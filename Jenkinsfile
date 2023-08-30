@@ -9,7 +9,7 @@ pipeline {
         }
         stage('Trigger Central Jenkinsfile') {
             steps {
-                build job: 'Central-Jenkinsfile', parameters: [
+                build job: 'main', parameters: [
                     string(name: 'branch', value: 'QA'),
                     string(name: 'tag', value: 'v.1')
                 ]
