@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     stages {
-        stage('Create Release in QA') {
+        stage('Create Release in sandbox') {
             steps {
                 // ... Steps to create the release in the QA branch
             }
@@ -10,8 +10,8 @@ pipeline {
         stage('Trigger Central Jenkinsfile') {
             steps {
                 build job: 'Central-Jenkinsfile', parameters: [
-                    string(name: 'branch', value: 'QA'),
-                    string(name: 'tag', value: 'your-tag-name')
+                    string(name: 'branch', value: 'sandbox'),
+                    string(name: 'tag', value: 'v.1')
                 ]
             }
         }
