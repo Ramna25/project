@@ -4,7 +4,7 @@ pipeline {
     stages {
         stage('Create Release in QA') {
             steps {
-                // ... Steps to create the release in the QA branch
+                echo "Creating release in QA branch..."
             }
         }
         stage('Trigger Central Jenkinsfile') {
