@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     parameters {
-        string(name: 'branchname', defaultValue: '', description: 'Branch name')
+        string(name: 'branch', defaultValue: '', description: 'Branch name')
         string(name: 'tag', defaultValue: '', description: 'Tag name')
     }
 
@@ -10,15 +10,15 @@ pipeline {
         stage('Check Release') {
             steps {
                 script {
-                    def branchname = params.branch
+                    def branch = params.branch
                     def tag = params.tag
 
-                    echo "Received branch: ${branchname}"
+                    echo "Received branch: ${branch}"
                     echo "Received tag: ${tag}"
 
-                    if (branchname == 'QA' && tag.startsWith('QA-')) {
+                    if (branch == 'QA' && tag.startsWith('qa-')) {
                         echo "I am a release from QA."
-                    } else if (branchname == 'sandbox' && tag.startsWith('sandbox-')) {
+                    } else if (branch == 'sandbox' && tag.startsWith('sandbox-')) {
                         echo "I am a release from sandbox."
                     } else {
                         echo "This is not a recognized release."
