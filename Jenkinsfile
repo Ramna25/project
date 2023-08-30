@@ -11,7 +11,7 @@ pipeline {
             steps {
                 build job: 'Central-Jenkinsfile', parameters: [
                     string(name: 'branch', value: 'QA'),
-                    string(name: 'tag', value: 'your-tag-name')
+                    string(name: 'tag', value: 'v.1')
                 ]
             }
         }
