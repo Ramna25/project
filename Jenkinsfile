@@ -16,7 +16,7 @@ pipeline {
                     echo "Received branch: ${branchname}"
                     echo "Received tag: ${tag}"
 
-                    if (branchname == 'QA' && tag.startsWith('qa-')) {
+                    if (branchname == 'QA' && tag.startsWith('QA-')) {
                         echo "I am a release from QA."
                     } else if (branchname == 'sandbox' && tag.startsWith('sandbox-')) {
                         echo "I am a release from sandbox."
