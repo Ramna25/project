@@ -3,7 +3,7 @@ pipeline {
 
     parameters {
         string(name: 'branchname', defaultValue: '', description: 'Branch name')
-        string(name: 'tag', defaultValue: '', description: 'Tag name')
+        string(name: 'latestTag', defaultValue: '', description: 'Tag name')
     }
 
     stages {
@@ -14,7 +14,7 @@ pipeline {
                     def tag = params.tag
 
                     echo "Received branch: ${branchname}"
-                    echo "Received tag: ${tag}"
+                    echo "Received tag: ${latestTag}"
 
                     if (branchname == 'QA' && tag.startsWith('qa-')) {
                         echo "I am a release from QA."
