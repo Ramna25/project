@@ -3,7 +3,7 @@ pipeline {
 
     parameters {
         string(name: 'branchname', defaultValue: '', description: 'Branch name')
-        string(name: 'repotag', defaultValue: '', description: 'Tag name')
+        string(name: 'tag', defaultValue: '', description: 'Tag name')
     }
 
     stages {
