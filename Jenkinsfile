@@ -68,7 +68,7 @@ pipeline {
     }
 */
 // check release and the perform deployment on the server
-/*
+
        stage('Check Incoming release from which Branch') {
             steps {
                 script {
@@ -85,7 +85,7 @@ pipeline {
             }
         }
     
-     */
+     
       stage('Build Docker Image and Push to DockerHub'){
            steps {                       
               
@@ -93,12 +93,13 @@ pipeline {
                def dockerTool = tool name: 'docker', type: 'org.jenkinsci.plugins.docker.commons.tools.DockerTool'
                    withEnv(["DOCKER=${dockerTool}/bin"]) {
                 
-                     sh  "cd /var/jenkins_home/jobs/sandboxserver/workspace/build && ${DOCKER}/docker login -u $DOCKERHUB_CREDENTIALS_USR -p $DOCKERHUB_CREDENTIALS_PSW && ${DOCKER}/docker build -t  aboukrouh/${params.reponame}:${params.repotag} . && ${DOCKER}/docker push ramna25/${params.reponame}:${params.repotag}"
+                     sh  "cd /var/jenkins_home/jobs/main/workspace/build && ${DOCKER}/docker login -u $DOCKERHUB_CREDENTIALS_USR -p $DOCKERHUB_CREDENTIALS_PSW && ${DOCKER}/docker build -t  ramna25/${params.reponame}:${params.repotag} . && ${DOCKER}/docker push ramna25/${params.reponame}:${params.repotag}"
                    
                }
              }
            }
       }
+     
 /*
     stage('login to sandbox server'){
       steps{ 
